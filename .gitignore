@@ -13,3 +13,6 @@ src/**/*.js.map
 
 ormconfig.json
 src/config.*
+
+package-lock.json
+yarn.lock
