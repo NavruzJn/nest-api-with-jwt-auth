@@ -1,5 +1,4 @@
 import {Get, Param, Controller} from '@nestjs/common';
-import { Request } from 'express';
 import { CurrencyService } from './currency.service';
 
 import {

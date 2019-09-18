@@ -11,7 +11,7 @@ export class CurrencyService {
   ) {}
 
   async findById(id: number): Promise<CurrencyEntity> {
-    return await this.currencyRepository.findOne(id);
+    return (await this.currencyRepository.findOne(id))!;
   }
 
   async findAll(): Promise<CurrencyEntity[]> {

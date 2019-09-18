@@ -11,8 +11,7 @@ jspm_packages/
 src/**/*.js
 src/**/*.js.map
 
+src/config.ts
 ormconfig.json
-src/config.*
 
 package-lock.json
-yarn.lock

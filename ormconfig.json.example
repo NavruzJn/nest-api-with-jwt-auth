@@ -5,7 +5,7 @@
   "port": 3306,
   "username": "username",
   "password": "password",
-  "database": "databasename",
+  "database": "databaase",
   "synchronize": true,
   "dropSchema": false,
   "logging": true,
@@ -25,14 +25,4 @@
     "migrationsDir": "src/migration",
     "subscribersDir": "src/subscriber"
   }
-}
-{
-  "type": "mysql",
-  "host": "localhost",
-  "port": 3306,
-  "username": "your-mysql-username",
-  "password": "your-mysql-password",
-  "database": "nestjsrealworld",
-  "entities": ["src/**/**.entity{.ts,.js}"],
-  "synchronize": true
 }

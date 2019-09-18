@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {CreateUser} from './dto';
 const jwt = require('jsonwebtoken');
-import { SECRET } from '../config';
+import { SECRET } from '../config.ts.example';
 import { UserRO } from './user.interface';
 import { UserEntity } from '../entities/user.entity';
 
@@ -18,7 +18,7 @@ export class UserService {
 
   }
 
-  public generateJWT(user) {
+  public generateJWT(user: UserEntity) {
     let today = new Date();
     let exp = new Date(today);
     exp.setDate(today.getDate() + 60);

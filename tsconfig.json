@@ -5,7 +5,7 @@
     "noImplicitAny": false,
     "removeComments": true,
     "noLib": false,
-    "lib": ["es5", "es6", "dom"],
+    "lib": ["es2017"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es6",
@@ -13,10 +13,10 @@
     "allowJs": true,
     "outDir": "./dist"
   },
-    "include": [
+  "include": [
     "src/**/*"
   ],
-    "exclude": [
+  "exclude": [
     "node_modules",
     "**/*.spec.ts"
   ]

@@ -5,7 +5,7 @@ import {CurrencyEntity} from "../entities/currency.entity";
 
 require('dotenv').config();
 
-const commands = ['version', 'migrate', 'rollback', 'migration', 'seed'];
+const commands = ['currency', 'migrate'];
 const command = process.argv[2];
 
 // The template for database migration files (see templates/*.js)
@@ -34,8 +34,6 @@ function wrap(task, action) {
 }
 
 process.nextTick(() => wrap('db', async () => {
-  let db;
-
   if (!commands.includes(command))
     throw new Error(`Unknown command: ${command}`);
 
@@ -45,16 +43,16 @@ process.nextTick(() => wrap('db', async () => {
         createConnection().then(async (connection) => {
           const currencyRepository = getManager().getRepository(CurrencyEntity);
 
-          await fetch('https://www.cbr-xml-daily.ru/daily_json.js', {method: "GET"})
+          await fetch('https://www.cbr-xml-daily.ru/daily_json.js')
             .then(res => res.json())
             .then(async data => {
               const currencies: CurrencyEntity[] = [];
+
               if (data.Valute)
-                data.Valute.forEach((valute) => {
+                  await Object.keys(data.Valute).forEach((key) => {
                   const currency = new CurrencyEntity();
-                  currency.id = valute.ID;
-                  currency.name = valute.Name;
-                  currency.rate = valute.Value;
+                  currency.name = data.Valute[key].Name;
+                  currency.rate = data.Valute[key].Value;
                   currencies.push(currency)
                 });
 
@@ -64,12 +62,11 @@ process.nextTick(() => wrap('db', async () => {
 
         }).catch((error) => console.log("TypeORM connection error: ", error));
         break;
+      case 'migrate': break;
       default: break;
     }
   } finally {
-    if (db) {
-      await db.destroy();
-    }
+
   }
 }));
 
